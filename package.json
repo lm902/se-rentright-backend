@@ -8,14 +8,17 @@
   },
   "dependencies": {
     "egg": "^3",
-    "egg-scripts": "^2"
+    "egg-mongoose": "^4.0.1",
+    "egg-scripts": "^2",
+    "egg-validate": "^2.0.2"
   },
   "devDependencies": {
     "egg-bin": "^5",
     "egg-ci": "^2",
     "egg-mock": "^5",
     "eslint": "^8",
-    "eslint-config-egg": "^12"
+    "eslint-config-egg": "^12",
+    "eslint-config-standard": "^17.1.0"
   },
   "engines": {
     "node": ">=16.0.0"
