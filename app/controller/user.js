@@ -48,6 +48,13 @@ class UserController extends Controller {
       this.ctx.body = { success: false }
     }
   }
+
+  async update () {
+    const user = await this.service.user.current()
+    await this.ctx.model.user.updateOne({ _id: user._id }, this.ctx.request.body)
+    this.ctx.status = 200
+    this.ctx.body = { success: true }
+  }
 }
 
 module.exports = UserController

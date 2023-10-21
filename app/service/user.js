@@ -38,6 +38,12 @@ class UserService extends Service {
       const newUser = await this.ctx.model.User.findOne({ username, password })
       newUser.password = null
       return newUser
+    } else {
+      this.ctx.status = 403
+      this.ctx.body = {
+        code: 'login_required',
+        message: 'This action requires a valid login session.'
+      }
     }
   }
 
