@@ -4,7 +4,10 @@ module.exports = app => {
 
   const UserSchema = new Schema({
     username: String,
-    password: Buffer
+    password: Buffer,
+    profilePicture: { type: String, required: false },
+    phone: { type: String, required: false },
+    email: { type: String, required: false }
   })
 
   return mongoose.model('User', UserSchema)
