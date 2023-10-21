@@ -43,9 +43,6 @@ class UserController extends Controller {
     if (user) {
       this.ctx.status = 200
       this.ctx.body = { success: true, user }
-    } else {
-      this.ctx.status = 404
-      this.ctx.body = { success: false }
     }
   }
 

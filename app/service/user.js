@@ -33,8 +33,8 @@ class UserService extends Service {
 
   async current () {
     const user = this.ctx.session.user
-    const { username, password } = user
     if (user) {
+      const { username, password } = user
       const newUser = await this.ctx.model.User.findOne({ username, password })
       newUser.password = null
       return newUser
