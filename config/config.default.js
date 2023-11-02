@@ -19,7 +19,7 @@ module.exports = appInfo => {
   config.middleware = []
 
   config.mongoose = {
-    url: 'mongodb://localhost:27017/rentright',
+    url: process.env.MONGO_URI || 'mongodb://localhost:27017/rentright',
     options: {},
     plugins: []
   }
