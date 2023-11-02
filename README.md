@@ -16,11 +16,11 @@ Requests from clients expecting a JSON encoded response should include an ``` Ac
 
 |Field|Type|Description|
 |-|-|-|
-|username|String|
+|username|String|Optional|
 |password|Buffer|Not accessible from the client|
 |profilePicture|String|Optional - This could be an URI to an image or an image encoded as data URI|
 |phone|String|Optional|
-|email|String|Optional|
+|email|String|
 
 ### Listing
 |Field|Type|Description|
@@ -47,7 +47,7 @@ Requests from clients expecting a JSON encoded response should include an ``` Ac
 Login to the site. The login session is returned with cookies and should be passed back in subsequent requests.
 
 Body fields:
-- Username: String
+- Email: String
 - Password: String (length >= 6)
 
 #### POST /user/logout
@@ -59,7 +59,8 @@ Logout from the site.
 Create a new account.
 
 Body fields:
-- Username: String
+- Email: String
+- Username: String, Optional
 - Password: String (length >= 6)
 
 #### GET /user/current

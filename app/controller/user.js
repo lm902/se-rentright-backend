@@ -1,15 +1,15 @@
 const Controller = require('egg').Controller
 
 class UserController extends Controller {
-  #userRules = {
-    username: 'string',
+  #userLoginRules = {
+    email: 'string',
     password: 'password'
   }
 
   async login () {
-    this.ctx.validate(this.#userRules)
-    const { username, password } = this.ctx.request.body
-    const user = await this.service.user.login(username, password)
+    this.ctx.validate(this.#userLoginRules)
+    const { email, password } = this.ctx.request.body
+    const user = await this.service.user.login(email, password)
     if (user) {
       this.ctx.status = 200
       this.ctx.body = { success: true }
@@ -20,9 +20,9 @@ class UserController extends Controller {
   }
 
   async register () {
-    this.ctx.validate(this.#userRules)
-    const { username, password } = this.ctx.request.body
-    const user = await this.service.user.register(username, password)
+    this.ctx.validate(this.#userLoginRules)
+    const { email, username, password } = this.ctx.request.body
+    const user = await this.service.user.register(email, username, password)
     if (user) {
       this.ctx.status = 200
       this.ctx.body = { success: true }

@@ -2,14 +2,14 @@ const crypto = require('crypto')
 const Service = require('egg').Service
 
 class UserService extends Service {
-  async find (username, password) {
-    const user = await this.ctx.model.User.findOne({ username, password })
+  async find (email, password) {
+    const user = await this.ctx.model.User.findOne({ email, password })
     return user
   }
 
-  async login (username, plainTextPassword) {
+  async login (email, plainTextPassword) {
     const password = this.derivePassword(plainTextPassword)
-    const user = await this.find(username, password)
+    const user = await this.find(email, password)
     if (user) {
       this.ctx.session.user = user
       return user
@@ -20,11 +20,11 @@ class UserService extends Service {
     delete this.ctx.session.user
   }
 
-  async register (username, plainTextPassword) {
-    const user = await this.ctx.model.User.findOne({ username })
+  async register (email, username, plainTextPassword) {
+    const user = await this.ctx.model.User.findOne({ email })
     if (!user) {
       const password = this.derivePassword(plainTextPassword)
-      const newUser = new this.ctx.model.User({ username, password })
+      const newUser = new this.ctx.model.User({ email, username, password })
       await newUser.save()
       this.ctx.session.user = newUser
       return newUser
@@ -34,8 +34,8 @@ class UserService extends Service {
   async current () {
     const user = this.ctx.session.user
     if (user) {
-      const { username, password } = user
-      const newUser = await this.ctx.model.User.findOne({ username, password })
+      const { email, password } = user
+      const newUser = await this.find(email, password)
       newUser.password = null
       return newUser
     } else {
