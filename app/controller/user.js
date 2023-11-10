@@ -13,6 +13,7 @@ class UserController extends Controller {
     if (user) {
       this.ctx.body = { success: true }
     } else {
+      this.ctx.status = 403
       this.ctx.body = { code: 'login_failure', message: 'Incorrect email or password.' }
     }
   }
@@ -21,6 +22,7 @@ class UserController extends Controller {
     this.ctx.validate(this.#userLoginRules)
     const { email, username, password } = this.ctx.request.body
     const result = await this.service.user.register(email, username, password)
+    if (result.code) this.ctx.status = 403
     this.ctx.body = result
   }
 
