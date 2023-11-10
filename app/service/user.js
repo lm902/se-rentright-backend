@@ -50,7 +50,7 @@ class UserService extends Service {
   }
 
   derivePassword (plainTextPassword) {
-    return crypto.pbkdf2Sync(plainTextPassword, this.config.keys, 600000, 256, 'sm3')
+    return crypto.pbkdf2Sync(plainTextPassword, this.config.keys, 120000, 256, 'sm3')
   }
 }
 
