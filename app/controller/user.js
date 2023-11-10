@@ -22,14 +22,8 @@ class UserController extends Controller {
   async register () {
     this.ctx.validate(this.#userLoginRules)
     const { email, username, password } = this.ctx.request.body
-    const user = await this.service.user.register(email, username, password)
-    if (user) {
-      this.ctx.status = 200
-      this.ctx.body = { success: true }
-    } else {
-      this.ctx.status = 403
-      this.ctx.body = { success: false }
-    }
+    const result = await this.service.user.register(email, username, password)
+    this.ctx.body = result
   }
 
   logout () {

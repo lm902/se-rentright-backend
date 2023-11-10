@@ -27,7 +27,9 @@ class UserService extends Service {
       const newUser = new this.ctx.model.User({ email, username, password })
       await newUser.save()
       this.ctx.session.user = newUser
-      return newUser
+      return { success: true }
+    } else {
+      return { code: 'duplicate_email', message: 'This email is already in use.' }
     }
   }
 
