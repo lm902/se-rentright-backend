@@ -11,7 +11,7 @@ class UserController extends Controller {
     const { email, password } = this.ctx.request.body
     const user = await this.service.user.login(email, password)
     if (user) {
-      this.ctx.body = { success: true }
+      this.ctx.body = { success: true, user }
     } else {
       this.ctx.status = 403
       this.ctx.body = { code: 'login_failure', message: 'Incorrect email or password.' }
