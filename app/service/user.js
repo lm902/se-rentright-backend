@@ -12,9 +12,7 @@ class UserService extends Service {
     const user = await this.find(email, password)
     if (user) {
       this.ctx.session.user = user
-      const newUser = { ...user }
-      newUser.password = null
-      return newUser
+      return this.current()
     }
   }
 
