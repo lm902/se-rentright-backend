@@ -29,6 +29,7 @@ Requests from clients expecting a JSON encoded response should include an ``` Ac
 |title|String|
 |images|[String]|
 |description|String|
+|rent|Number|
 |location|Object|
 |location.lat|Number|
 |location.lon|Number|

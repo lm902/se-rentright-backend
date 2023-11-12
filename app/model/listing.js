@@ -7,6 +7,7 @@ module.exports = app => {
     title: String,
     images: [String],
     description: String,
+    rent: Number,
     location: {
       lat: Number,
       lon: Number,
