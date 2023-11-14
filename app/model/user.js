@@ -7,7 +7,8 @@ module.exports = app => {
     password: Buffer,
     profilePicture: { type: String, required: false },
     phone: { type: String, required: false },
-    email: String
+    email: String,
+    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Listing' }]
   })
 
   return mongoose.model('User', UserSchema)

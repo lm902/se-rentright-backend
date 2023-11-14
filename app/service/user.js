@@ -2,8 +2,8 @@ const crypto = require('crypto')
 const Service = require('egg').Service
 
 class UserService extends Service {
-  async find (email, password) {
-    const user = await this.ctx.model.User.findOne({ email, password })
+  find (email, password) {
+    const user = this.ctx.model.User.findOne({ email, password })
     return user
   }
 
@@ -37,8 +37,7 @@ class UserService extends Service {
     const user = this.ctx.session.user
     if (user) {
       const { email, password } = user
-      const newUser = await this.find(email, password)
-      newUser.password = null
+      const newUser = await this.find(email, password).select('-password').populate('favorites')
       return newUser
     } else {
       this.ctx.status = 403
