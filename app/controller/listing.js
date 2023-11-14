@@ -3,12 +3,12 @@ const Controller = require('egg').Controller
 class ListingController extends Controller {
   async find () {
     this.ctx.status = 200
-    this.ctx.body = await this.ctx.model.Listing.find(this.ctx.request.body, { 'publisher.password': 0 })
+    this.ctx.body = await this.ctx.model.Listing.find(this.ctx.request.body).populate('publisher', '-password')
   }
 
   async findById () {
     this.ctx.status = 200
-    this.ctx.body = await this.ctx.model.Listing.findById(this.ctx.params.id, { 'publisher.password': 0 })
+    this.ctx.body = await this.ctx.model.Listing.findById(this.ctx.params.id).populate('publisher', '-password')
   }
 
   async create () {
