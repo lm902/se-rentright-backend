@@ -21,11 +21,12 @@ Requests from clients expecting a JSON encoded response should include an ``` Ac
 |profilePicture|String|Optional - This could be an URI to an image or an image encoded as data URI|
 |phone|String|Optional|
 |email|String|
+|favorites|[Listing]|
 
 ### Listing
 |Field|Type|Description|
 |-|-|-|
-|publisher|ObjectId|References to a User|
+|publisher|User|
 |title|String|
 |images|[String]|
 |description|String|
