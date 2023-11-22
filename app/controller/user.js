@@ -41,7 +41,7 @@ class UserController extends Controller {
   async update () {
     const user = await this.service.user.current()
     await this.ctx.model.user.updateOne({ _id: user._id }, this.ctx.request.body)
-    this.ctx.body = { success: true }
+    this.ctx.body = await this.service.user.current()
   }
 }
 
